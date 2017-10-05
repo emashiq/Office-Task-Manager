@@ -8,7 +8,7 @@ export class MasterService<TEntity> {
     private AppURL:string;
     public extra:string;
     private OtherHeader = new Headers({'Content-Type': 'application/json'});
-    private baseUrl:string="http://localhost:5000/api/";
+    private baseUrl:string="http://localhost:2246/api/";
     private headers = new Headers({ 'Authorization': 'Bearer ' + ""});
     private options = new RequestOptions({ headers: this.headers });
     AppJSONheaders: { 'Accept': 'application/json' }
@@ -44,7 +44,7 @@ export class MasterService<TEntity> {
       Login(createEntity:TEntity):Observable<string>
       {
         return this.http
-        .post('http://localhost:5000/api/login', JSON.stringify(createEntity),{headers: this.OtherHeader})
+        .post('/api/login', JSON.stringify(createEntity),{headers: this.OtherHeader})
         .map(res => res.json().token as string);
       }
       private handleError(error: any): Promise<any> {
