@@ -3,8 +3,9 @@
         <div class='col-sm-3' *ngIf="authService">
             <nav-menu *ngIf="authService"></nav-menu>
         </div>
-        <div class='getStyle() body-content'>
-            <router-outlet></router-outlet>
+        <div [ngClass]="authService ? 'col-md-9 body-content': 'col-md-12 body-content'">
+                <router-outlet></router-outlet>
         </div>
     </div>
 </div>
+   

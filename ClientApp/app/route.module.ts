@@ -7,14 +7,15 @@ import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
+import {AuthGuard} from './components/auth/auth.service'
 
 const routes: Routes = [
     { path: '', component:LoginComponent},
     //{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     //{ path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home',outlet:'login-auth', component: HomeComponent },
-    { path: 'counter', component: CounterComponent },
-    { path: 'fetch-data', component: FetchDataComponent }
+    { path: 'home', component: HomeComponent ,canActivate:[AuthGuard]},
+    { path: 'counter', component: CounterComponent ,canActivate:[AuthGuard]},
+    { path: 'fetch-data', component: FetchDataComponent ,canActivate:[AuthGuard]}
   ];
   
   @NgModule({

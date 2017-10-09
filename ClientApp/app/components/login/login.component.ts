@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
-import {MasterService} from '../service/master.service'
+import {MasterService} from '../service/master.service';
 @Component({
     providers:[MasterService],
     selector:'login-app',
@@ -12,7 +12,7 @@ export class LoginComponent{
     loginObject:LoginViewModel;
     _service:MasterService<LoginViewModel>;
     token:string;
-    constructor(masterService:MasterService<LoginViewModel>)
+    constructor(masterService:MasterService<LoginViewModel>,private router:Router)
     {
         this.loginObject=new LoginViewModel;
         this._service=masterService;
@@ -23,7 +23,8 @@ export class LoginComponent{
     }
     storeToken(x:string):void{
         this.token=x;
-        console.log(this.token);
+        window.localStorage.setItem('token',x);
+        this.router.navigate(['/home']);
     }
    
 }

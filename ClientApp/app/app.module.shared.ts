@@ -12,6 +12,8 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import {LoginComponent} from './components/login/login.component';
 import {MasterService} from './components/service/master.service';
+import {AuthGuard} from './components/auth/auth.service'
+
 @NgModule({
     declarations: [
         LoginComponent,
@@ -26,7 +28,8 @@ import {MasterService} from './components/service/master.service';
         HttpModule,
         FormsModule,
         AppRoutingModule
-    ]
+    ],
+    providers:[AuthGuard,AppComponent]
 })
 export class AppModuleShared {
 }
