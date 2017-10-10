@@ -1,9 +1,9 @@
 <div class='container-fluid'>
     <div class='row'>
-        <div class='col-sm-3' *ngIf="authService">
-            <nav-menu *ngIf="authService"></nav-menu>
+        <div class='col-sm-3' *ngIf="isLoggedIn$ | async">
+            <nav-menu></nav-menu>
         </div>
-        <div [ngClass]="authService ? 'col-md-9 body-content': 'col-md-12 body-content'">
+        <div [ngClass]="(isLoggedIn$ | async) ? 'col-md-9 body-content':'col-md-12 body-content'">
                 <router-outlet></router-outlet>
         </div>
     </div>

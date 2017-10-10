@@ -7,7 +7,7 @@ import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
-import {AuthGuard} from './components/auth/auth.service'
+import {AuthGuard} from './components/auth/auth.gurad'
 
 const routes: Routes = [
     { path: '', component:LoginComponent},

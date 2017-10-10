@@ -1,16 +1,17 @@
-import { Component,OnInit } from '@angular/core';
-import {AuthGuard} from '../auth/auth.service';
-
+import { Component, OnInit, Input } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import {AuthGuard} from '../auth/auth.gurad'
 @Component({
     selector: 'nav-menu',
     templateUrl: './navmenu.component.html',
     styleUrls: ['./navmenu.component.css']
 })
 export class NavMenuComponent {
-    private Permitted:boolean;
-    constructor(private _authGuard:AuthGuard){}
-    ngOnInit() {
-        this.Permitted=this._authGuard.canActivate();
-        console.log('working');
-    }
+      isLoggedIn$: Observable<boolean>;                  // {1}
+    
+      constructor(private authService: AuthGuard) { }
+    
+      ngOnInit() {
+        this.isLoggedIn$ = this.authService.isLoggedIn; // {2}
+      }
 }
