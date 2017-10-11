@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace Office_Task_Manager.Controllers
 {
     [Route("api/[controller]")]
+     [Authorize(ActiveAuthenticationSchemes = "JwtBearer")]
+    
     public class SampleDataController : Controller
     {
         private static string[] Summaries = new[]
@@ -16,7 +18,6 @@ namespace Office_Task_Manager.Controllers
         };
 
         [HttpGet("[action]")]
-        [Authorize]
         public IEnumerable<WeatherForecast> WeatherForecasts()
         {
             var rng = new Random();

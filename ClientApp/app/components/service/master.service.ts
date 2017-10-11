@@ -1,6 +1,7 @@
 import { Injectable }    from '@angular/core';
 import { Headers, Http ,RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs';
+
 import { Component, Inject } from '@angular/core';
 import 'rxjs/add/operator/map'
 @Injectable()
@@ -8,15 +9,18 @@ export class MasterService<TEntity> {
     private AppURL:string;
     public extra:string;
     private OtherHeader = new Headers({'Content-Type': 'application/json'});
-    private baseUrl:string="http://localhost:2246/api/";
-    private headers = new Headers({ 'Authorization': 'Bearer ' + ""});
+    private headers :Headers;
     private options = new RequestOptions({ headers: this.headers });
     AppJSONheaders: { 'Accept': 'application/json' }
-    constructor(private http: Http,) { 
-        this.AppURL=this.baseUrl+this.extra;
+    
+    constructor(private http: Http) {
+      if(typeof(window)!='undefined')
+      {
+        this.headers=new Headers( {'Authorization': 'Bearer ' + localStorage.getItem('token')});
+      }
     }
       Get(): Observable<TEntity[]> {
-        return this.http.get(this.AppURL,{headers: this.headers})
+        return this.http.get(this.extra,{headers: this.headers})
                    .map(response => response.json() as TEntity[]);
       }
       updateEntity(updateObject:TEntity):Observable<TEntity>
