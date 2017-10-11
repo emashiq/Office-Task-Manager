@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Office_Task_Manager.Controllers
 {
     [Route("api/[controller]")]
-     [Authorize(ActiveAuthenticationSchemes = "JwtBearer")]
+     [Authorize(AuthenticationSchemes="JwtBearer")]
     
     public class SampleDataController : Controller
     {

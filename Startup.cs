@@ -12,6 +12,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Options;
+using Office_Task_Manager.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Office_Task_Manager
 {
@@ -28,6 +30,8 @@ namespace Office_Task_Manager
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddDbContext<ApplicationDbContext> (options =>
+                options.UseSqlServer (Configuration.GetConnectionString ("DefaultConnection")));
             services.AddCors(
             options => options.AddPolicy("AllowCors",
             builder =>
