@@ -20,7 +20,7 @@ namespace OfficeTaskManager.Migrations
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Office_Task_Manager.Models.UserAccounts", b =>
+            modelBuilder.Entity("Office_Task_Manager.Models.UserAccount", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -29,13 +29,42 @@ namespace OfficeTaskManager.Migrations
                         .IsRequired()
                         .HasMaxLength(32);
 
+                    b.Property<string>("Token")
+                        .HasMaxLength(500);
+
+                    b.Property<int>("UserAccountRoleId");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(100);
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserAccountRoleId");
+
                     b.ToTable("UserAccounts");
+                });
+
+            modelBuilder.Entity("Office_Task_Manager.Models.UserAccountRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserAccountRoles");
+                });
+
+            modelBuilder.Entity("Office_Task_Manager.Models.UserAccount", b =>
+                {
+                    b.HasOne("Office_Task_Manager.Models.UserAccountRole", "UserAccountRole")
+                        .WithMany("UserAccounts")
+                        .HasForeignKey("UserAccountRoleId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

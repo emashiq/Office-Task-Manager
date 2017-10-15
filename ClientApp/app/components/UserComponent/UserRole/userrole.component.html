@@ -1,0 +1,19 @@
+<h2 class="center-block">User Account Roles</h2>
+<hr>
+<div class="col-md-4">
+        <form (ngSubmit)="onSubmit()"  #roleForm="ngForm" [formGroup]="form" novalidate>
+            <div class="form-group">
+                    <input type="Id" class="hidden"
+                    [(ngModel)]="userAccountRoles.Id" name="Id"
+                     formControlName="Id">
+                    <label for="">Name</label>
+                    <input name="Name" class="form-control" id="name"
+                    required
+                    [(ngModel)]="userAccountRoles.Name" name="Name"
+                     formControlName="Name">
+            </div>
+            
+            <button class="btn btn-primary" (click)="submitted=true" [disabled]="!form.valid">Save</button>
+            
+              </form>
+</div>

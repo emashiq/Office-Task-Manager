@@ -9,6 +9,7 @@ namespace Office_Task_Manager.Models
         {
             
         }
-        public DbSet<UserAccounts> UserAccounts { get;set;}
+        public DbSet<UserAccount> UserAccounts { get;set;}
+        public DbSet<UserAccountRole> UserAccountRoles { get; set; }
     }
 }

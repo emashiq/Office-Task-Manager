@@ -13,7 +13,8 @@ import { CounterComponent } from './components/counter/counter.component';
 import {LoginComponent} from './components/login/login.component';
 import {MasterService} from './components/service/master.service';
 import {AuthGuard} from './components/auth/auth.gurad'
-
+import { UserRoleComponent } from './components/UserComponent/UserRole/userrole.component';
+import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
 @NgModule({
     declarations: [
         LoginComponent,
@@ -21,14 +22,16 @@ import {AuthGuard} from './components/auth/auth.gurad'
         NavMenuComponent,
         CounterComponent,
         FetchDataComponent,
-        HomeComponent
+        HomeComponent,
+        UserRoleComponent
         
     ],
     imports: [
         CommonModule,
         HttpModule,
         FormsModule,
-        AppRoutingModule
+        AppRoutingModule,
+        ReactiveFormsModule
     ],
     providers:[AuthGuard,MasterService,NavMenuComponent]
 })
