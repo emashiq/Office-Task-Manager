@@ -13,7 +13,7 @@ import { CounterComponent } from './components/counter/counter.component';
 import {LoginComponent} from './components/login/login.component';
 import {MasterService} from './components/service/master.service';
 import {AuthGuard} from './components/auth/auth.gurad'
-import { UserRoleComponent } from './components/UserComponent/UserRole/userrole.component';
+import { UserRoleComponent, UserListComponent } from './components/UserComponent/UserRole/userrole.component';
 import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
 @NgModule({
     declarations: [
@@ -23,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
         CounterComponent,
         FetchDataComponent,
         HomeComponent,
-        UserRoleComponent
+        UserRoleComponent,
+        UserListComponent
         
     ],
     imports: [
@@ -31,7 +32,8 @@ import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
         HttpModule,
         FormsModule,
         AppRoutingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        
     ],
     providers:[AuthGuard,MasterService,NavMenuComponent]
 })

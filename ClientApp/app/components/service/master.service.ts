@@ -6,27 +6,31 @@ import { Component, Inject } from '@angular/core';
 import 'rxjs/add/operator/map'
 @Injectable()
 export class MasterService<TEntity> {
-    private AppURL:string;
+    public AppURL:string;
     public extra:string;
     private OtherHeader = new Headers({'Content-Type': 'application/json'});
-    private headers :Headers;
-    private options = new RequestOptions({ headers: this.headers });
+    private options = new RequestOptions();
+
+    
     AppJSONheaders: { 'Accept': 'application/json' }
     
     constructor(private http: Http) {
       if(typeof(window)!='undefined')
       {
-        this.headers=new Headers( {'Authorization': 'Bearer ' + localStorage.getItem('token')});
+          this.options.headers = new Headers();
+          this.options.headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
+          this.options.headers.append('Content-Type', 'application/json');
+          //this.headers = new Headers({ 'Authorization': 'Bearer ' + localStorage.getItem('token') }).set('Accept': 'application/json');
       }
     }
-      Get(): Observable<TEntity[]> {
-        return this.http.get(this.extra,{headers: this.headers})
+    Get(): Observable<TEntity[]> {
+        return this.http.get(this.AppURL, { headers: this.options.headers })
                    .map(response => response.json() as TEntity[]);
       }
       updateEntity(updateObject:TEntity):Observable<TEntity>
       {
-        return this.http
-        .put(this.AppURL, JSON.stringify(updateObject), {headers: this.headers})
+          return this.http
+              .put(this.AppURL, JSON.stringify(updateObject), { headers: this.options.headers })
         .map(response => response.json() as TEntity);
       }
       GetById(id:any):Observable<TEntity>{
@@ -39,11 +43,11 @@ export class MasterService<TEntity> {
         .map(response => response.json() as TEntity)
         .catch(this.handleError);
       }
-      create(createEntity:TEntity):Observable<TEntity>
+      create(createEntity:TEntity):Observable<number>
       {
-        return this.http
-        .post(this.AppURL, JSON.stringify(createEntity), {headers: this.headers})
-        .map(res => res.json() as TEntity);
+          return this.http
+              .post(this.AppURL, JSON.stringify(createEntity), { headers: this.options.headers })
+            .map(res => res.json() as number);
       }
       Login(createEntity:TEntity):Observable<string>
       {

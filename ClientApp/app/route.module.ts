@@ -8,7 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import {AuthGuard} from './components/auth/auth.gurad'
-import { UserRoleComponent } from './components/UserComponent/UserRole/userrole.component';
+import { UserRoleComponent, UserListComponent } from './components/UserComponent/UserRole/userrole.component';
 
 const routes: Routes = [
     { path: '', component:LoginComponent},
@@ -17,7 +17,8 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent ,canActivate:[AuthGuard]},
     { path: 'counter', component: CounterComponent ,canActivate:[AuthGuard]},
     { path: 'fetch-data', component: FetchDataComponent ,canActivate:[AuthGuard]},
-    { path: 'user-role', component: UserRoleComponent ,canActivate:[AuthGuard]}
+    { path: 'user-role', component: UserRoleComponent ,canActivate:[AuthGuard]},
+    { path: 'user-role-list', data: { reuse: false }, component: UserListComponent, canActivate: [AuthGuard] }
   ];
   
   @NgModule({

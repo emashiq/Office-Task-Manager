@@ -1,19 +1,28 @@
 <h2 class="center-block">User Account Roles</h2>
 <hr>
-<div class="col-md-4">
-        <form (ngSubmit)="onSubmit()"  #roleForm="ngForm" [formGroup]="form" novalidate>
+<div class="row">
+    <div class="col-md-4">
+        <form (ngSubmit)="onSubmit()" #roleForm="ngForm" [formGroup]="form" novalidate>
             <div class="form-group">
-                    <input type="Id" class="hidden"
-                    [(ngModel)]="userAccountRoles.Id" name="Id"
-                     formControlName="Id">
-                    <label for="">Name</label>
-                    <input name="Name" class="form-control" id="name"
-                    required
-                    [(ngModel)]="userAccountRoles.Name" name="Name"
-                     formControlName="Name">
+                <input type="text" class="hidden"
+                       [(ngModel)]="userAccountRoles.Id" name="id"
+                       formControlName="id">
+                <label for="">Name</label>
+                <input name="name" class="form-control" id="name"
+                       required
+                       [(ngModel)]="userAccountRoles.Name"
+                       formControlName="name">
+                <div *ngIf="name.errors" class="alert alert-warning">
+                    Name is required.
+                </div>
             </div>
-            
             <button class="btn btn-primary" (click)="submitted=true" [disabled]="!form.valid">Save</button>
-            
-              </form>
+        </form>
+    </div>
+</div>
+<br />
+<div class="row">
+    <a [routerLink]="['/user-role-list']" class="btn btn-link">
+        <span class="glyphicon glyphicon-share-alt"></span>Back To List
+    </a>
 </div>
