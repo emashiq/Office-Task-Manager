@@ -1,7 +1,6 @@
 import { Injectable }    from '@angular/core';
-import { Headers, Http ,RequestOptions} from '@angular/http';
+import { Headers, Http ,RequestOptions,URLSearchParams} from '@angular/http';
 import {Observable} from 'rxjs';
-
 import { Component, Inject } from '@angular/core';
 import 'rxjs/add/operator/map'
 @Injectable()
@@ -33,8 +32,10 @@ export class MasterService<TEntity> {
               .put(this.AppURL, JSON.stringify(updateObject), { headers: this.options.headers })
         .map(response => response.json() as TEntity);
       }
-      GetById(id:any):Observable<TEntity>{
-        return this.http.get(this.AppURL)
+      GetById(id: any): Observable<TEntity>{
+          
+          let options = new RequestOptions({ headers: this.options.headers});
+          return this.http.get(this.AppURL+'/'+id, options)
         .map(response => response.json() as TEntity)
         .catch(this.handleError);
       }
