@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import {AppRoutingModule} from './route.module';
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
@@ -15,17 +14,20 @@ import {MasterService} from './components/service/master.service';
 import {AuthGuard} from './components/auth/auth.gurad'
 import { UserRoleComponent, UserListComponent, UserRoleUpdateComponent } from './components/UserComponent/UserRole/userrole.component';
 import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
+import { AppRoutingModule } from "./app.routing.module";
+import { DashboardComponent } from "./components/dashboard/dashboard.component";
 @NgModule({
     declarations: [
         LoginComponent,
         AppComponent,
+        DashboardComponent,
+        HomeComponent,
         NavMenuComponent,
         CounterComponent,
         FetchDataComponent,
-        HomeComponent,
         UserRoleComponent,
-        UserListComponent,
-        UserRoleUpdateComponent
+        UserRoleUpdateComponent,
+        UserListComponent
     ],
     imports: [
         CommonModule,
@@ -35,7 +37,8 @@ import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
         ReactiveFormsModule,
         
     ],
-    providers:[AuthGuard,MasterService,NavMenuComponent]
+    providers: [AuthGuard, MasterService, NavMenuComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModuleShared {
 }

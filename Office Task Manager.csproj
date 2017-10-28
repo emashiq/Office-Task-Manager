@@ -26,10 +26,14 @@
 
   <ItemGroup>
     <None Remove="ClientApp\app\components\auth\localStorage.setup.ts" />
+    <None Remove="ClientApp\app\components\dashboard\dashboard.component.ts" />
+    <None Remove="ClientApp\app\dashboard.module.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\auth\localStorage.setup.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboard\dashboard.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dashboard.module.ts" />
   </ItemGroup>
 
   <ItemGroup>

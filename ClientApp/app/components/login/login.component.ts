@@ -16,7 +16,7 @@ export class LoginComponent{
     {
         this.loginObject=new LoginViewModel;
         this._service=masterService;
-        this._service.extra="Login";
+        this._service.extra = "Login";
     }
     onSubmit(){
         this._service.Login(this.loginObject).subscribe(x=> this.storeToken(x));

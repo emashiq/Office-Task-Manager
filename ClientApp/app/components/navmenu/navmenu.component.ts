@@ -7,11 +7,9 @@ import {AuthGuard} from '../auth/auth.gurad'
     styleUrls: ['./navmenu.component.css']
 })
 export class NavMenuComponent {
-      isLoggedIn$: Observable<boolean>;                  // {1}
     
-      constructor(private authService: AuthGuard) { }
+      constructor() { }
     
       ngOnInit() {
-        this.isLoggedIn$ = this.authService.isLoggedIn; // {2}
       }
 }
